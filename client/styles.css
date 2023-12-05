@@ -2,6 +2,9 @@ body {
     background-color: hsl(195,100%,6%);
     font-family: 'Roboto', sans-serif;
     font-size: 62.5%;
-    font-weight: 400;
-    color: #212529;
+    color: #191716;
 }
+.section__card:hover{
+    transform: translate(1%, 1%) scale(1);
+    box-shadow: 0 0 3rem 0 rgba(255, 255, 255, 0.747);
+  }

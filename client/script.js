@@ -12,6 +12,7 @@ function fetchUsers() {
         })
         .then(data => {
             users = data; // Tilldela det omvandlade svaret till den globala variabeln
+            console.log(users);
             addUsersToDOM(users); // Använd arrayen för att lägga till användare till DOM
         })
         .catch(error => {
@@ -21,7 +22,6 @@ function fetchUsers() {
 
 // Anropa funktionen för att utföra hämtningen
 fetchUsers();
-console
   
 
 // // Funktion för att skapa en färgklass baserat på användarens favoritfärg
@@ -42,6 +42,7 @@ function addUserToList(user) {
     li.style.minWidth = "2rem";
     li.style.margin = "1rem";
     li.style.padding = "1rem";
+    li.classList.add("section__card");
     
     // Använder en templatesträng för att skapa HTML innehållet
     li.innerHTML = `
@@ -64,12 +65,9 @@ function addUserToList(user) {
     ul.style.display = "flex";
     ul.style.flexWrap = "wrap";
     ul.style.justifyContent = "center";
-    ul.style.backgroundImage = 'linear-gradient(45deg, orange 0%, yellow 20%, green 40%, blue 60%, indigo 80%, violet 100%)';
+    ul.style.backgroundImage = 'linear-gradient(45deg, orange 5%, yellow 25%, green 45%, blue 65%, indigo 85%)';
     // ul.style.borderRadius = "10rem";
     ul.style.border = "solid .2rem #FEE440";
     // Loopar igenom varje användare och lägger till dem till listan
     users.forEach(addUserToList);
   }
-
-  addUsersToDOM(users); // Anropar funktionen för att lägga till användare till DOM
-  
