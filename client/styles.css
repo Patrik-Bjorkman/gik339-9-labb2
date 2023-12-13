@@ -1,10 +1,23 @@
 body {
-    background-color: hsl(195,100%,6%);
     font-family: 'Roboto', sans-serif;
     font-size: 62.5%;
     color: #191716;
 }
 .section__card:hover{
     transform: translate(1%, 1%) scale(1);
-    box-shadow: 0 0 3rem 0 rgba(255, 255, 255, 0.747);
+    box-shadow: 0 0 3rem 0 #F1F2EE;
   }
+.li__styling {
+    font-size: 1rem;
+    border: solid .2rem black;
+    border-radius: 1rem;
+    min-width : 2rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+.ul__styling{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: .5rem;
+}

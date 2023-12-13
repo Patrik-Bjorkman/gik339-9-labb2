@@ -1,73 +1,29 @@
-// Definiera en global variabel som kan hålla användardata
-let users = [];
+const localUrl = "http://localhost:3000/users";
+const responsePromise = fetch(localUrl);
 
-// Funktion för att hämta användardata från servern
-function fetchUsers() {
-    fetch('http://localhost:3000/users') // Anpassa URL efter din serverkonfiguration
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok: ' + response.statusText);
-            }
-            return response.json(); // Omvandla svaret till JSON
-        })
-        .then(data => {
-            users = data; // Tilldela det omvandlade svaret till den globala variabeln
-            console.log(users);
-            addUsersToDOM(users); // Använd arrayen för att lägga till användare till DOM
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
-}
-
-// Anropa funktionen för att utföra hämtningen
-fetchUsers();
-  
-
-// // Funktion för att skapa en färgklass baserat på användarens favoritfärg
-// function createColorClass(color) {
-//     return `color-${color}`;
-//   }
-  
-// Funktion för att lägga till användare i listan
-function addUserToList(user) {
-    // Skapar ett nytt li-element
-    const li = document.createElement('li');
-    
-    // Tillämpa användarens färg som bakgrundsfärg
-    li.style.backgroundColor = user.color;
-    li.style.fontSize = "1rem";
-    li.style.border = "solid .2rem black";
-    li.style.borderRadius = "1rem";
-    li.style.minWidth = "2rem";
-    li.style.margin = "1rem";
-    li.style.padding = "1rem";
-    li.classList.add("section__card");
-    
-    // Använder en templatesträng för att skapa HTML innehållet
-    li.innerHTML = `
-      <div>
-        <h3>${user.firstName} ${user.lastName}</h3>
-        <p>Username: ${user.username}</p>
-        <p>ID: ${user.id}</p>
-      </div>
-    `;
-  
-    // Lägg till det nya li-elementet i ul-listan
-    document.querySelector('ul').appendChild(li);
-  }
-  
-  // Funktion för att lägga till alla användare till listan
-  function addUsersToDOM(users) {
-    // Skapar ett nytt ul-element
+responsePromise
+  .then(response => {
+    // console.log(response);
+    return response.json();
+  })
+  // .then(users => console.log(users));
+const request = new Request(localUrl);
+fetch(localUrl)
+  .then(response => response.json())
+  .then((users) => {
+    document.body.classList.add("h-14", "bg-gradient-to-r", "from-cyan-500", "to-blue-500");
     const ul = document.createElement('ul');
-    document.body.appendChild(ul); // Lägger till ul-elementet i body
-    ul.style.display = "flex";
-    ul.style.flexWrap = "wrap";
-    ul.style.justifyContent = "center";
-    ul.style.backgroundImage = 'linear-gradient(45deg, orange 5%, yellow 25%, green 45%, blue 65%, indigo 85%)';
-    // ul.style.borderRadius = "10rem";
-    ul.style.border = "solid .2rem #FEE440";
-    // Loopar igenom varje användare och lägger till dem till listan
-    users.forEach(addUserToList);
-  }
+    ul.classList.add("ul__styling");
+    document.body.appendChild(ul);
+    users.forEach(user => {
+      const li = document.createElement('li'); // Skapa ett li-element
+      li.innerHTML = `<h3>${user.firstName} ${user.lastName}</h3>
+                      <p>Username: ${user.username}</p>
+                      <p>ID: ${user.id}</p>`;
+      li.style.backgroundColor = user.color;
+      li.classList.add("section__card", "li__styling","hover:bg-gradient-to-br"); // Lägger till klasser på li-elementet
+      ul.appendChild(li); // Appenda li-elementet till ul-elementet
+    });
+    return users;
+  })
+  .then((data) => console.log(data));
