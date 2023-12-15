@@ -46,6 +46,6 @@ server.get("/users", (req, res) => {
     db.close();
 });
 
-server.get("/", (req, res) => {
+server.get("/users", (req, res) => {
     // Leave the callback function empty for now
 });
