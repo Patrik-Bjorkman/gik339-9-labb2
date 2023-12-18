@@ -3,10 +3,8 @@ const responsePromise = fetch(localUrl);
 
 responsePromise
   .then(response => {
-    // console.log(response);
     return response.json();
   })
-  // .then(users => console.log(users));
 const request = new Request(localUrl);
 fetch(localUrl)
   .then(response => response.json())
